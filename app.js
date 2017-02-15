@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
+var upload = require('./utils/multerUtil');
 
 // var index = require('./routes/index');
 // var users = require('./routes/users');
@@ -22,6 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
 
+
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -32,6 +34,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', index);
 // app.use('/users', users);
+
+app.use(upload.any());
+app.use(session({
+  secret: settings.cookieSecret,
+  key: settings.db, // cookie name
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30}, // 30days
+  store: new MongoStore({
+//  db: settings.db,
+//  host: settings.host,
+//  port: settings.port
+    url: 'mongodb://'+settings.host+'/'+settings.db
+  }),
+  resave: true,
+  saveUninitialized: true
+}));
+
 routes(app);
 
 app.listen(app.get('port'), function() {
@@ -55,17 +73,5 @@ app.listen(app.get('port'), function() {
 //res.status(err.status || 500);
 //res.render('error');
 //});
-
-app.use(session({
-  secret: settings.cookieSecret,
-  key: settings.db, // cookie name
-  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30}, // 30days
-  store: new MongoStore({
-//  db: settings.db,
-//  host: settings.host,
-//  port: settings.port
-    url: 'mongodb://'+settings.host+'/'+settings.db
-  })
-}));
 
 module.exports = app;
