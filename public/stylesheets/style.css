@@ -53,3 +53,68 @@ artical a:hover {
   color: #333;
   font-size: 13px;
 }
+.prepage a {
+  float: left;
+  padding: .5em 1em;
+  color: #ff0000;
+  font-weight: bold;;
+  text-decoration: none;
+}
+.nextpage a {
+  float: right;
+  padding: .5em 1em;
+  color: #ff0000;
+  font-weight: bold;;
+  text-decoration: none;
+}
+.prepage a:hover,
+.nextpage a:hover {
+  background-color: #ff0000;
+  color: #f9f9f9;
+  -webkit-transition: color .2s linear;
+}
+.archive {
+  list-style: none;
+  line-height: 28px;
+}
+.archive h3 {
+  margin: .5em 0;
+}
+.archive time {
+  float: left;
+  margin-right: 1.2em;
+  color: #999;
+  font-size: 14px;
+}
+.tag {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 0 5px;
+  background-color: #ff0000;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px;
+}
+.tag:hover {
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  -webkit-transition: color .2s linear;
+}
+.search {
+  margin: .5em 0;
+  width: 6em;
+  text-align: center;
+  border: 0;
+  font-size: 1em;
+}
+.l_head {
+  float: left;
+  margin-left: -4em;
+  box-shadow: 0px 1px 4px #888;
+}
+.r_head {
+  float: right;
+  margin-top: -2.5em;
+  box-shadow: 0px 1px 4px #888;
+}
