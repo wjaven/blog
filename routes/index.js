@@ -4,6 +4,7 @@ var crypto = require('crypto'); //生成散列值加密密码
 var User = require('../models/user');
 var Post = require('../models/post');
 var Comment = require('../models/comment');
+var imgUtil = require('../utils/imgUtil');
 /* GET home page. */
 //router.get('/', function(req, res, next) {
 //res.render('index', { title: 'Express' });
@@ -11,6 +12,9 @@ var Comment = require('../models/comment');
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
+    console.log('///')
+    imgUtil();
+    console.log('/.../')
     var page = req.query.p ? parseInt(req.query.p) : 1;
     Post.getTen(null, page, function(err, posts, total){
       if (err) posts = [];
